@@ -46,8 +46,8 @@ header {
   z-index: 100000;
 }
 header.scrolled {
-  transition: all ease-in-out 0.2s;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.88);
+  transition: all ease-in-out 0.3s;
 }
 header .logo {
   position: absolute;
@@ -374,22 +374,20 @@ main .hero .thumbnail-hot-movie .hot-movie-item img {
 }
 .card-content {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-45deg);
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   padding: 20px;
-  background-color: #fff;
   z-index: 1000;
-  background-color: rgb(61, 61, 63);
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(15px);
   opacity: 0;
   display: flex;
   flex-direction: column;
 }
 
 .card:hover .card-content {
-  transform: translate(-50%, -50%) rotate(0deg);
   opacity: 1;
   transition: all 0.4s ease-in-out;
 }
