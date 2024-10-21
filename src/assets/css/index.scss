@@ -96,6 +96,9 @@ header .login {
   margin-right: 30px;
   margin-left: auto;
 }
+header .link-user-login {
+  text-decoration: none;
+}
 header .login i {
   margin: 0 30px;
   color: white;
@@ -103,6 +106,13 @@ header .login i {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  height: 100%;
+}
+header .login .header-user-avt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 30px;
 }
 header .login i:hover {
   color: #e71a0f;
@@ -175,12 +185,12 @@ main .hero .arrows {
   z-index: 100;
 }
 main .hero .arrows button {
-  background-color: #eee5;
+  background-color: white;
   border: none;
   width: 40px;
   height: 40px;
   border-radius: 5px;
-  color: #eee;
+  color: black;
   font-family: monospace;
   font-weight: 700;
   margin: 5px;
@@ -215,7 +225,15 @@ main .hero .hero-item::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(to top, #000 40%, transparent);
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0) 50%
+    ),
+    linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 50%),
+    linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 50%);
+  background-blend-mode: multiply;
+  background-color: transparent;
 }
 main .hero .hero-item .hero-img {
   width: 100%;
@@ -410,8 +428,13 @@ main .hero .thumbnail-hot-movie .hot-movie-item img {
 /*swiperjs*/
 .swiper {
   width: 100%;
+  margin: 0 auto; /* Căn giữa Swiper */
+  padding: 0; /* Kiểm tra padding */
+  text-align: center; /* Căn giữa các nội dung bên trong */
 }
-
+.swiper-wrapper {
+  left: 1.5px;
+}
 .swiper-slide {
   display: flex;
   justify-content: center;
@@ -450,6 +473,9 @@ main .movie-section .swiper-button-next {
 main .movie-section .swiper-button-prev::after,
 main .movie-section .swiper-button-next::after {
   content: "";
+}
+main .movie-section .swiper-button-next {
+  right: 27px;
 }
 .movie-section {
   padding: 20px 0;
@@ -507,7 +533,7 @@ main .hero-detail-product .background-img {
   width: 100%;
   height: 100%;
 }
-main .hero-detail-product::before {
+main .hero-detail-product::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -523,7 +549,6 @@ main .hero-detail-product::before {
     linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 50%);
   background-blend-mode: multiply;
   background-color: transparent;
-  z-index: 2000;
 }
 
 main .hero-detail-product .movie-detail {
@@ -548,7 +573,7 @@ main .hero-detail-product .movie-detail .movie-name {
   text-transform: uppercase;
   color: white;
   font-weight: 700;
-  font-size: 100px;
+  font-size: 60px;
   letter-spacing: 25px;
 }
 
@@ -556,12 +581,12 @@ main .hero-detail-product .movie-detail span {
   text-transform: uppercase;
   color: white;
   font-weight: 100;
-  font-size: 40px;
+  font-size: 30px;
 }
 main .hero-detail-product .movie-detail .director {
   text-transform: uppercase;
   color: white;
-  font-size: 45px;
+  font-size: 35px;
   font-weight: 600;
   margin-left: 20px;
 }
@@ -695,28 +720,466 @@ main .movie-section .button-34.active {
 }
 
 /*login-section*/
-.login-wrapper {
-  display: none;
+.home-page-logo {
+  width: 100px;
+  height: auto;
+  border: 3px white solid;
+  border-radius: 50%;
+  overflow: hidden;
 }
-.login-wrapper.active {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 100000;
-  background-color: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+.login-wrapper {
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .login-wrapper .login-form {
-  display: none;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px 15px 50px;
+  border-radius: 15px;
+  background-color: #253745;
+  color: white;
+  filter: blur(20px);
+  opacity: 0;
+  animation: showContent 0.4s 0.25s ease-in-out 1 forwards;
 }
-.login-wrapper .login-form.active {
-  display: block;
-  width: 300px;
-  height: 500px;
+.login-wrapper .login-form .home-page {
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+}
+.login-wrapper .login-form .home-page i {
+  color: white;
+}
+.login-wrapper .login-form .home-page i:hover {
+  color: #0d6efd;
+}
+.login-wrapper .login-form .login-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  width: 100%;
+  margin-bottom: 50px;
+  border-radius: 15px;
+}
+.login-wrapper .login-form .login-bar .tab {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-wrapper .login-form .login-bar .tab h4 {
+  cursor: pointer;
+  padding: 10px 0;
+}
+.login-wrapper .login-form .login-bar .tab.active h4 {
+  color: #5b42f3;
+}
+.login-wrapper form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transform: translateY(30px);
+  filter: blur(20px);
+  opacity: 0;
+  animation: showContent 0.4s 0.25s ease-in-out 1 forwards;
+}
+.login-wrapper form .login-title {
+  font-size: 50px;
+  text-transform: uppercase;
+}
+.login-wrapper form .login-inp {
+  height: 100px;
+  width: 400px;
   padding: 20px;
+  position: relative;
+}
+.login-wrapper form .login-inp i {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  color: white;
+}
+.login-wrapper form input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-bottom: 2px solid white;
+  outline: none;
+  font-size: 16px;
+  color: white;
+  background-color: #253745;
+}
+.login-wrapper form input::placeholder {
+  font-weight: 600;
+}
+.login-wrapper form input:focus {
+  background-color: #253745;
+  font-size: 16px;
+}
+.login-wrapper form input:not(:placeholder-shown) {
+  background-color: #253745;
+}
+.login-wrapper form input[value] {
+  background-color: #253745;
+}
+
+/* Ghi đè kiểu dáng của input khi bị autofill */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #253745 inset !important; /* Màu nền mong muốn */
+  box-shadow: 0 0 0 1000px #253745 inset !important; /* Ghi đè màu nền */
+  -webkit-text-fill-color: white !important; /* Màu chữ */
+}
+
+/* Kiểu dáng cho các trình duyệt không phải Webkit */
+input:-moz-autofill {
+  background-color: #253745 !important; /* Màu nền mong muốn */
+  color: white !important; /* Màu chữ */
+}
+
+.login-wrapper form .login-btn {
+  padding: 20px 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-wrapper form .button-34 {
+  margin: 20px;
+  background-color: #1899d6;
+  padding: 10px 20px;
+  border-radius: 999px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji",
+    NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji",
+    EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+}
+.login-wrapper form .button-34.new-value-btn {
+  background-color: #9ba8ab;
+}
+.login-wrapper .register span {
+  margin: 10px;
+  font-size: 18px;
+}
+.login-wrapper .register .register-link {
+  color: rgb(24, 153, 214);
+  cursor: pointer;
+}
+/* user-dropdown-menu*/
+.user-avt {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+.user-avt:hover {
+  transform: scale(1.3);
+  transition: all ease-in-out 0.3s;
+}
+.user-avt img {
+  width: 100%;
+  height: 100%;
+}
+
+/*book-ticket-section*/
+.book-ticket-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.book-ticket-wrapper .book-ticket-content {
+  width: 65%;
+  height: auto;
+  z-index: 2000;
   background-color: white;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.4) 5px 10px 15px;
+  border-radius: 10px;
+  opacity: 0;
+  filter: blur(10px);
+  animation: softFadeIn 0.5s forwards;
+  background-color: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  color: #e1d7c6;
+  font-weight: 500;
+}
+@keyframes softFadeIn {
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+.book-ticket-wrapper .book-ticket-content .tab-back {
+  width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+.book-ticket-wrapper .book-ticket-content .book-ticket-form {
+  display: flex;
+}
+.book-ticket-wrapper .book-ticket-content .book-ticket-form .screen-div {
+  width: 80%;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.book-ticket-wrapper
+  .book-ticket-content
+  .book-ticket-form
+  .screen-div
+  .screen {
+  width: 100%;
+  height: 5px;
+  border: 2px solid black;
+}
+.book-ticket-wrapper .book-ticket-content .book-ticket-form .book-ticket-seats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+}
+.book-ticket-wrapper
+  .book-ticket-content
+  .book-ticket-form
+  .book-ticket-seats-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  width: 100%;
+}
+.book-ticket-wrapper .book-ticket-content .seat-col {
+  display: flex;
+}
+.book-ticket-wrapper .book-ticket-content .seat-block {
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 500;
+  color: grey;
+  border-radius: 5px;
+  background-color: #eae4dd;
+}
+.book-ticket-wrapper .book-ticket-content .seat-block.isSelected {
+  color: black;
+  background-color: chocolate;
+}
+.book-ticket-wrapper .book-ticket-content .seat-block.isChosen {
+  font-size: 0;
+  background-color: green;
+}
+.book-ticket-wrapper .book-ticket-content .seat-block.isChosen:hover {
+  background-color: green;
+  font-size: 0;
+  cursor: not-allowed;
+}
+.book-ticket-wrapper .book-ticket-content .seat-block:hover {
+  background-color: chocolate;
+  color: black;
+  transition: all ease-in-out 0.2s;
+}
+
+.book-ticket-total {
+  width: 50%;
+  padding: 0 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.book-ticket-total .seat-review {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.book-ticket-total .seat-review .seat-color {
+  display: flex;
+  color: #e1d7c6;
+  font-weight: 500;
+  margin-right: 30px;
+}
+.book-ticket-total .seat-review .seat-color .seat-color-block {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  border-radius: 5px;
+  background-color: #eae4dd;
+}
+.book-ticket-total .seat-review .seat-color .seat-color-block.isBooked-color {
+  background-color: green;
+}
+.book-ticket-total .seat-review .seat-color .seat-color-block.isSelected-color {
+  background-color: chocolate;
+}
+.book-ticket-total .your-seat-choose {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+.book-ticket-total .your-seat-choose .seat-block-isSelected {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 500;
+  color: black;
+  border-radius: 5px;
+  background-color: chocolate;
+}
+.book-ticket-total .total {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.book-ticket-total .spacer {
+  flex-grow: 1;
+}
+.book-ticket-total .total-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.book-ticket-total .movie-detail-info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: rgba(82, 82, 82, 0.3);
+  margin-bottom: 5px;
+}
+.book-ticket-total .movie-detail-info img {
+  width: 70px;
+  height: 100px;
+  border: 2px solid white;
+  margin-right: 20px;
+}
+
+.button-17 {
+  position: relative;
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: 0.25px;
+  line-height: normal;
+  width: 80%;
+  overflow: visible;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  will-change: transform, opacity;
+  z-index: 0;
+  margin-bottom: 20px;
+}
+
+.button-17:hover {
+  background: #f6f9fe;
+  color: #174ea6;
+}
+
+.button-17:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
+    0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.button-17:focus {
+  outline: none;
+  border: 2px solid #4285f4;
+}
+
+.button-17:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 2px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 6px 10px 4px;
+}
+
+.button-17:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 4px 4px 0,
+    rgba(60, 64, 67, 0.15) 0 8px 12px 6px;
+}
+
+.button-17:disabled {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
 }
 
 /*footer*/

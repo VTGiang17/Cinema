@@ -6,7 +6,7 @@ export const MovieItem = ({ movieItem }) => {
     <Link
       className="card-link"
       to={{
-        pathname: `movie/${movieItem.id}`,
+        pathname: `/movie/${movieItem.id}`,
       }}
     >
       <div className="card">

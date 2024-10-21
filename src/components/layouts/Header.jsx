@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../../assets/images/logo.jpg";
+import { DropdownMenu } from "..";
 
 export const Header = () => {
   const [scroll, setScroll] = useState(false);
-
   const onScrollHandler = () => {
     if (window.scrollY > 50) {
       setScroll(true);
@@ -23,6 +23,12 @@ export const Header = () => {
       window.removeEventListener("scroll", onScrollHandler);
     };
   }, []);
+
+  const user = useMemo(() => {
+    return JSON.parse(localStorage.getItem("userInfo"));
+  }, []);
+
+  console.log(user?.isLoggedIn);
 
   return (
     <header
@@ -68,8 +74,16 @@ export const Header = () => {
             placeholder="Nhập phim..."
           />
         </div>
-        <i className="fa-solid fa-circle-user fa-2xl user-login"></i>
+        {user?.isLoggedIn ? (
+          <DropdownMenu />
+        ) : (
+          <Link className="link-user-login" to={{ pathname: "/login" }}>
+            <i className="fa-solid fa-circle-user fa-2xl user-login"></i>
+          </Link>
+        )}
+
         <i className="header-cart fa-solid fa-ticket fa-2xl"></i>
+        <i class="fa-sharp fa-solid fa-heart fa-2xl"></i>
       </div>
     </header>
   );
