@@ -15,6 +15,7 @@ export const MovieSlider = () => {
     setShowingNavbarState(false);
     setComingSoonNavbarState(true);
   };
+  console.log("1111");
 
   return (
     <>

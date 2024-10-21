@@ -1,13 +1,14 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import { MovieItem } from "..";
+import { sliderComingSoonMovie } from "../../assets/mockData";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation } from "swiper/modules";
-import { MovieItem } from "../commons/MovieItem";
-import { sliderShowingMovie } from "../../assets/mockData";
 
-export const ShowingMovie = () => {
+export const ComingMovie = () => {
   return (
     <>
       <Swiper
@@ -20,13 +21,15 @@ export const ShowingMovie = () => {
           prevEl: ".swiper-button-prev",
         }}
       >
-        {sliderShowingMovie.map((item, index) => {
+        {sliderComingSoonMovie.map((item, index) => {
           return (
             <SwiperSlide key={`movie_${index}`}>
               <MovieItem movieItem={item} />
             </SwiperSlide>
           );
         })}
+        <i className="fa-solid fa-circle-left fa-2xl swiper-button-prev"></i>
+        <i className="fa-solid fa-circle-right fa-2xl swiper-button-next"></i>
       </Swiper>
     </>
   );

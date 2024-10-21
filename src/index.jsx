@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import reportWebVitals from "./reportWebVitals";
+import AppRouter from "./routers";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./assets/css/index.scss";
-import reportWebVitals from "./reportWebVitals";
-import AppRouter from "./routers";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
